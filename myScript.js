@@ -6,48 +6,69 @@ var etaPasseggero = parseInt(prompt("Quanti anni hai?"));
 if (Number.isNaN(etaPasseggero) || Number.isNaN(kmPercorsi))  {
     alert ("Il numero inserito non è valido");
 
-} else { 
+} else  { 
 // elaborazione input 
     var prezzoKm = 0.21;
 
     var prezzoTotale = kmPercorsi * prezzoKm;
-    console.log("il prezzo totale è " + prezzoTotale);
+    console.log("il prezzo totale è " + prezzoTotale + " €");
 
     prezzoTotale = prezzoTotale.toFixed(2);
 
     var sconto = 0;
 
-
+    var prezzoScontato = prezzoTotale - sconto;
+   
+    prezzoScontato = prezzoScontato.toFixed(2);
+    //console.log ("il prezzo scontato è " + prezzoScontato);
 
     if ( etaPasseggero > 65) {
-        console.log("il passeggero riceverà lo sconto del 40%");
-        sconto = (prezzoTotale / 100) * 40; 
-        sconto = sconto.toFixed(2)
+        scontoOver = (prezzoTotale / 100) * 40; 
+        scontoOver = scontoOver.toFixed(2)
+        console.log("risparmi " + scontoOver + " €");
+        var prezzoScontatoOver = prezzoTotale - scontoOver;
+        prezzoScontatoOver = prezzoScontatoOver.toFixed(2);
+        console.log("per gli over 65 il prezzo scontato del 40% è " + prezzoScontatoOver  + " €");
+
+        document.getElementById("scontoOver").innerHTML = prezzoScontatoOver + " € è il prezzo scontato";
+        
     } else if (etaPasseggero > 0 && etaPasseggero < 18 ) {
-        sconto = (prezzoTotale / 100) * 20;
-        sconto = sconto.toFixed(2)
-        console.log("il passeggero riceverà lo sconto del 20% " + sconto);
+        scontoJunior = (prezzoTotale / 100) * 20;
+        scontoJunior = scontoJunior.toFixed(2)
+        console.log("risparmi " + scontoJunior + " €");
+
+        var prezzoScontatoJunior = prezzoTotale - scontoJunior;
+        prezzoScontatoJunior = prezzoScontatoJunior.toFixed(2);
+
+        console.log("per i minorenni il prezzo scontato del 20% è " + prezzoScontatoJunior + " €");
+
+        document.getElementById("scontoMinorenne").innerHTML = prezzoScontatoJunior + " € è il prezzo scontato";
+        
     } else {
         console.log("il passeggero non riceverà nessuno sconto");
+        document.getElementById("prezzoTotale").innerHTML = prezzoTotale + " € è il prezzo totale";
     }
 
-    var prezzoScontato = prezzoTotale - sconto;
-    console.log ("il prezzo scontato è " + prezzoScontato);
+    /*var prezzoScontato = prezzoTotale - sconto;
 
     prezzoScontato = prezzoScontato.toFixed(2);
+    console.log ("il prezzo scontato è " + prezzoScontato);*/
+
+
     // visualizzazione output
-    document.getElementById("kmPercorsi").innerHTML = "I km che il passegero desidera percorrere: " + kmPercorsi;
-    document.getElementById("etaPasseggero").innerHTML = "Gli anni che il passegero ha: " + etaPasseggero;
+    document.getElementById("kmPercorsi").innerHTML = "I km che il passeggero desidera percorrere: " + kmPercorsi;
+    document.getElementById("etaPasseggero").innerHTML = "Gli anni che il passeggero ha: " + etaPasseggero;
 
-    document.getElementById("prezzoKm").innerHTML = prezzoKm + "centesimi è il prezzo del biglietto al km";
+    document.getElementById("prezzoKm").innerHTML = prezzoKm + " € è il prezzo del biglietto al km";
 
+    /*document.getElementById("prezzoTotale").innerHTML = prezzoTotale + " € è il prezzo totale";
 
-    document.getElementById("prezzoTotale").innerHTML = prezzoTotale + " è il prezzo totale dato da i km Percorsi * prezzo al Km 0.21";
+    document.getElementById("scontoOver").innerHTML = prezzoScontato + " € il passeggero riceverà lo sconto del 40% se è over 65enne";
+    document.getElementById("scontoMinorenne").innerHTML = prezzoScontato + " € il passeggero riceverà lo sconto del 20% se è minorenne";*/
 
-    document.getElementById("scontoOver").innerHTML = prezzoScontato + " il passeggero riceverà lo sconto del 40% se è over 65enne";
-    document.getElementById("scontoMinorenne").innerHTML = prezzoScontato + " il passeggero riceverà lo sconto del 20% se è minorenne";
-
+    
 }
+
 
 
 
